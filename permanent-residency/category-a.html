@@ -88,6 +88,71 @@
       <div class="container-6"></div>
     </div>
   </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 14px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+  <!-- Multiple Price Change Modals -->
+  <div id="modal1" class="modal">
+    🚨 <span>Category A - Revised rates!</span>
+    <button class="modal-close" onclick="closeModal(1)">❌</button>
+  </div>
+  
+  
+  <script>
+    function showModal() {
+      const modal = document.getElementById("modal1");
+      modal.classList.add("show");
+  
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal();
+      }, 5000);
+    }
+  
+    function closeModal() {
+      document.getElementById("modal1").classList.remove("show");
+    }
+  
+    // Show the modal when the page loads
+    window.onload = showModal;
+  </script>
   <div class="w-layout-blockcontainer w-container">
     <div data-w-id="ad06cca2-82b7-5bd5-37e2-73f4bc698c60" style="opacity:0" class="rich-text-block-11 w-richtext">
       <h4><strong class="bold-text-19"> PERMANENT RESIDENCY : </strong><strong>Category A</strong></h4>
@@ -127,6 +192,10 @@
         <li>Copy of the Police Clearance Certificate.</li>
         <li>Copy of the Checklist (downloadable from the provided link).</li>
       </ol>
+      <p><strong>Fees:</strong></p>
+      <ol role="list"></ol>
+      <li>Processing fees <strong>Ksh 50,000.</strong></li>
+        <li>Issuance fee <strong>Ksh 100,000.</strong></li>
       <p class="paragraph-7">Ensure all documents are accurately filled, signed, and provided before submission.</p>
       <p>‍</p>
     </div>

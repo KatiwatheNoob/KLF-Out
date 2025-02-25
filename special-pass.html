@@ -83,6 +83,75 @@
       <div class="container-6"></div>
     </div>
   </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 12px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+ <!-- Multiple Price Change Modals -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h5 class="modal-subheading">Revised Rates</h5>
+    <p class="modal-message">Special Pass Fees have been updated. Please to stay informed.</p>
+  
+  </div>
+</div>
+
+  
+  
+  <script>
+    function showModal() {
+      const modal = document.getElementById("modal1");
+      modal.classList.add("show");
+  
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal();
+      }, 5000);
+    }
+  
+    function closeModal() {
+      document.getElementById("modal1").classList.remove("show");
+    }
+  
+    // Show the modal when the page loads
+    window.onload = showModal;
+  </script>
   <div class="sysf-hero-section sysf-c-b-neutral-20">
     <div class="sysf-container"></div>
     <div class="w-layout-blockcontainer container-11 w-container">
@@ -134,7 +203,7 @@
         <p>‍</p>
         <h5><strong><sub class="subscript-2">SPECIAL PASS FEE DETAILS:</sub></strong></h5>
         <h5>‍</h5>
-        <p>1. <strong>Fee: Ksh. 15,000/= per month Via:</strong></p>
+        <p>1. <strong>Fee: Usd 200 per month Via:</strong></p>
         <ul role="list">
           <li>Payment through Mpesa Or <a href="main/contact.html" target="_blank">Contact Us</a>
           </li>

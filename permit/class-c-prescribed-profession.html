@@ -78,6 +78,75 @@
       <div class="container-7"></div>
     </div>
   </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 14px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+ <!-- Multiple Price Change Modals -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h6 class="modal-subheading">Class C - Revised Rates</h6>
+    <p class="modal-message">The permit Fees for Class C have been updated. Please check the latest rates to stay informed.</p>
+  
+  </div>
+</div>
+
+  
+  
+  <script>
+    function showModal() {
+      const modal = document.getElementById("modal1");
+      modal.classList.add("show");
+  
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal();
+      }, 5000);
+    }
+  
+    function closeModal() {
+      document.getElementById("modal1").classList.remove("show");
+    }
+  
+    // Show the modal when the page loads
+    window.onload = showModal;
+  </script>
   <section class="section-5">
     <div class="w-layout-blockcontainer w-container">
       <div data-w-id="25721ae6-8d1e-a529-a886-b2745d347cda" style="opacity:0" class="rich-text-block-8 w-richtext">
@@ -121,8 +190,8 @@
         <p>‍</p>
         <p><strong>3. Fees:</strong></p>
         <ul role="list">
-          <li>Processing fees (Non-refundable): <strong>Kshs. 10,000/=.</strong></li>
-          <li>Issuance Fees (Payable upon approval): <strong>Kshs. 100,000/= per year.</strong></li>
+          <li>Processing fees (Non-refundable): <strong>Kshs. 20,000/=.</strong></li>
+          <li>Issuance Fees (Payable upon approval): <strong>Kshs. 250,000/= per year.</strong></li>
           <li>Payment through the provided online module.</li>
           <li>East African Community citizens (<strong>Uganda, Tanzania, Rwanda, Burundi</strong>) are <strong>exempt.</strong></li>
           <li>Mode of Payment: <strong>M-PESA, Airtel Money.</strong></li>

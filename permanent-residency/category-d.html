@@ -88,6 +88,71 @@
       <div class="container-6"></div>
     </div>
   </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 14px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+  <!-- Multiple Price Change Modals -->
+  <div id="modal1" class="modal">
+    🚨 <span>Category D - Revised Rates!</span>
+    <button class="modal-close" onclick="closeModal(1)">❌</button>
+  </div>
+  
+  
+  <script>
+    function showModal() {
+      const modal = document.getElementById("modal1");
+      modal.classList.add("show");
+  
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal();
+      }, 5000);
+    }
+  
+    function closeModal() {
+      document.getElementById("modal1").classList.remove("show");
+    }
+  
+    // Show the modal when the page loads
+    window.onload = showModal;
+  </script>
   <section class="section-12">
     <div class="w-layout-blockcontainer w-container">
       <div data-w-id="3e44ebf9-d8d7-33f6-e80c-968eca3726d6" style="opacity:0" class="rich-text-block-12 w-richtext">
@@ -117,8 +182,8 @@
         <p>‍</p>
         <p><strong>Fees:</strong></p>
         <ul role="list">
-          <li>Processing fee (Non-refundable): <strong>Kshs 5,000</strong></li>
-          <li>Issuance fee (Payable once on approval): <strong>Kshs 50,000</strong></li>
+          <li>Processing fee (Non-refundable): <strong>Kshs 50,000</strong></li>
+          <li>Issuance fee (Payable once on approval): <strong>Kshs 150,000</strong></li>
         </ul>
         <p><em>Note: A joint sworn Affidavit by the spouses should be attached if the marriage was not solemnized in Kenya.</em></p>
         <p>‍</p>

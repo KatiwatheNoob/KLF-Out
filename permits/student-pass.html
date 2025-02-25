@@ -84,6 +84,75 @@
       <div class="container-6"></div>
     </div>
   </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 12px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+ <!-- Multiple Price Change Modals -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h5 class="modal-subheading">Revised Rates</h5>
+    <p class="modal-message">Student Pass Fees have been updated. Please to stay informed.</p>
+  
+  </div>
+</div>
+
+  
+  
+  <script>
+    function showModal() {
+      const modal = document.getElementById("modal1");
+      modal.classList.add("show");
+  
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal();
+      }, 5000);
+    }
+  
+    function closeModal() {
+      document.getElementById("modal1").classList.remove("show");
+    }
+  
+    // Show the modal when the page loads
+    window.onload = showModal;
+  </script>
   <div class="w-layout-blockcontainer w-container">
     <div data-w-id="e0c93312-2d36-d1d9-dbbb-f05b2661bbfd" style="opacity:0" class="sysf-rich-text-3 w-richtext">
       <h1><strong class="bold-text-2">Student Pass</strong></h1>
@@ -134,6 +203,8 @@
       </ul>
       <p><strong>11. Application Fee:</strong></p>
       <ul role="list">
+      <li>Revised Fees <strong>Usd 100</strong></li>
+      <li>Processing Fees <strong>Ksh 20,000</strong></li>
         <li>Payable via Mpesa Or <a href="../main/contact.html"><strong><code>Contact Us</code></strong></a>
         </li>
       </ul>

@@ -83,6 +83,75 @@
       <div class="container-6"></div>
     </div>
   </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 12px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+ <!-- Multiple Price Change Modals -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h5 class="modal-subheading">Revised Rates</h5>
+    <p class="modal-message">Class K Fees have been updated. Please to stay informed.</p>
+  
+  </div>
+</div>
+
+  
+  
+  <script>
+    function showModal() {
+      const modal = document.getElementById("modal1");
+      modal.classList.add("show");
+  
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal();
+      }, 5000);
+    }
+  
+    function closeModal() {
+      document.getElementById("modal1").classList.remove("show");
+    }
+  
+    // Show the modal when the page loads
+    window.onload = showModal;
+  </script>
   <section class="section-7">
     <div class="w-layout-blockcontainer w-container">
       <div data-w-id="b0551eaf-053e-e6a9-4fe1-fc963cd4d9b6" style="opacity:0" class="rich-text-block-5 w-richtext">
@@ -129,15 +198,15 @@
         </ul>
         <p><strong>8. Fees:</strong></p>
         <ul role="list">
-          <li>Processing Fee:<strong> KES 10,000</strong> (bankers cheque to PRINCIPAL SECRETARY MINISTRY OF INTERIOR AND COORDINATION OF NATIONAL GOVERNMENT).</li>
-          <li>Application Fee: <strong>KES 200,000</strong> for 2 years (option for <strong>1 year</strong> at <strong>KES 100,000</strong>, bankers cheque to <em>PRINCIPAL SECRETARY MINISTRY OF INTERIOR AND COORDINATION OF NATIONAL GOVERNMENT</em>).</li>
+          <li>Processing Fee:<strong> KES 20,000</strong> (bankers cheque to PRINCIPAL SECRETARY MINISTRY OF INTERIOR AND COORDINATION OF NATIONAL GOVERNMENT).</li>
+          <li>Application Fee: <strong>KES 500,000</strong> for 2 years (option for <strong>1 year</strong> at <strong>KES 250,000</strong>, bankers cheque to <em>PRINCIPAL SECRETARY MINISTRY OF INTERIOR AND COORDINATION OF NATIONAL GOVERNMENT</em>).</li>
           <li>Payment after permit approval with a grace period of a month.</li>
         </ul>
         <p><strong>9. Security Bond:</strong></p>
         <ul role="list">
-          <li><strong>KES 100,000 </strong>with a bank or insurance company (done after permit approval).</li>
+         
           <li>Submit the Security Bond form to Immigration along with the application fee.</li>
-          <li>International banks may be hesitant, consider using a local bank like KCB or Co-operative.</li>
+         
         </ul>
         <p><strong>10. Processing and Endorsement:</strong></p>
         <ul role="list">

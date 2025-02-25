@@ -21,6 +21,8 @@
   <script type="text/javascript">WebFont.load({  google: {    families: ["Merriweather:300,300italic,400,400italic,700,700italic,900,900italic","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Vollkorn:400,400italic,700,700italic","Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic","Inconsolata:400,700","PT Sans:400,400italic,700,700italic","Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic","Droid Sans:400,700","Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Varela:400","PT Serif:400,400italic,700,700italic","Josefin Sans:regular"]  }});</script>
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <script src="libs/pdfjs/pdf.min.js"></script>
+
   <link href="images/webclip.png" rel="apple-touch-icon">
   <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script><!--  Keep this css code to improve the font quality -->
   <style>
@@ -41,55 +43,305 @@
 </script>
 </head>
 <body class="body-28">
-  <div class="navbar-logo-center-11">
-    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-center-container-6 shadow-three w-nav">
-      <div class="container-15"></div>
-    </div>
-    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-left-container-5 shadow-three w-nav">
-      <div class="navbar-wrapper-5">
-        <a href="#" class="navbar-brand-5 w-nav-brand">
-          <div><img src="images/main.svg" loading="lazy" width="143" alt=""></div>
-        </a>
-        <nav role="navigation" class="nav-menu-wrapper-5 w-nav-menu">
-          <ul role="list" class="nav-menu-two-5 w-list-unstyled">
-            <li>
-              <a href="index.html" aria-current="page" class="nav-link-5 w--current">Home</a>
-            </li>
-            <li></li>
-            <li>
-              <div data-hover="true" data-delay="200" class="nav-dropdown-5 w-dropdown">
-                <div class="nav-dropdown-toggle-5 w-dropdown-toggle">
-                  <div class="nav-dropdown-icon-5 w-icon-dropdown-toggle"></div>
-                  <div>Services</div>
-                </div>
-                <nav class="nav-dropdown-list-5 shadow-three mobile-shadow-hide w-dropdown-list">
-                  <a href="main/permits.html" class="nav-dropdown-link-5 w-dropdown-link">Permits</a>
-                  <a href="main/passes.html" class="nav-dropdown-link-5 w-dropdown-link">Passes</a>
-                  <a href="main/visas.html" class="nav-dropdown-link-5 w-dropdown-link">Visas</a>
-                  <a href="main/permanent-residence.html" class="w-dropdown-link">Permanent Residency</a>
-                  <a href="main/citizenship.html" class="dropdown-link-7 w-dropdown-link">Citizenship</a>
-                </nav>
-              </div>
-              <a href="main/about-us.html" class="nav-link-5">About</a>
-              <a href="main/contact.html" class="nav-link-5">Contact</a>
-            </li>
-            <li></li>
-            <li class="list-item-3">
-              <div class="nav-divider-5"></div>
-            </li>
-            <li>
-              <a href="main/frequently-asked-questions.html" class="nav-link-accent-5"><strong>FAQs</strong></a>
-            </li>
-            <li class="mobile-margin-top-14"></li>
-          </ul>
-        </nav>
-        <div class="menu-button-5 w-nav-button">
-          <div class="icon-3 w-icon-nav-menu"></div>
-        </div>
-      </div>
-      <div class="container-6"></div>
-    </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 14px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+  <!-- Amber Alert Modal -->
+  <div id="alertModal" class="modal">
+    🚨 <span>New Work Permits Introduced! Stay informed.</span>
+    <button class="modal-close" onclick="closeModal()">❌</button>
   </div>
+  
+  <script>
+    // Function to show modal
+    function showModal() {
+      document.getElementById("alertModal").classList.add("show");
+  
+      // Auto-hide after 10 seconds (optional)
+      setTimeout(closeModal, 10000);
+    }
+  
+    // Function to close modal
+    function closeModal() {
+      document.getElementById("alertModal").classList.remove("show");
+    }
+  
+    // Show modal when page loads
+    window.onload = showModal;
+  </script>
+<style>
+  /* Modal Styles */
+  .modal {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background-color: #FFBF00; /* Amber */
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  /* Show the modal */
+  .modal.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Close button */
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+  }
+</style>
+
+<!-- Multiple Price Change Modals -->
+<div id="modal1" class="modal">
+  📢 <span>Permits Fees Updated.</span>
+  <button class="modal-close" onclick="closeModal(1)">❌</button>
+</div>
+
+<div id="modal2" class="modal">
+  📢 <span>Citizenship Fees Updated</span>
+  <button class="modal-close" onclick="closeModal(2)">❌</button>
+</div>
+
+<div id="modal3" class="modal">
+  📢 <span>Passes Fees Updated</span>
+  <button class="modal-close" onclick="closeModal(3)">❌</button>
+</div>
+
+<div id="modal4" class="modal">
+  📢 <span>Permanent Residency Fees Updated</span>
+  <button class="modal-close" onclick="closeModal(4)">❌</button>
+</div>
+
+<script>
+  // List of modal IDs to show consecutively
+  const modals = ["modal1", "modal2", "modal3", "modal4"];
+  let currentModal = 0;
+
+  function showNextModal() {
+    if (currentModal < modals.length) {
+      const modal = document.getElementById(modals[currentModal]);
+      modal.classList.add("show");
+
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal(currentModal + 1);
+      }, 5000);
+    }
+  }
+
+  function closeModal(index) {
+    if (index > 0 && index <= modals.length) {
+      document.getElementById(`modal${index}`).classList.remove("show");
+    }
+
+    // Move to the next modal after closing the current one
+    currentModal++;
+    if (currentModal < modals.length) {
+      setTimeout(showNextModal, 500); // Small delay before showing the next one
+    }
+  }
+
+  // Show the first modal on page load
+  window.onload = showNextModal;
+</script>
+
+
+<style>
+.pdf-modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+}
+
+.pdf-modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  position: relative;
+}
+
+.pdf-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+}
+
+#pdfCanvas {
+  width: 100%;
+  max-height: 500px;
+}
+</style>
+
+<div class="navbar-logo-center-11">
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-center-container-6 shadow-three w-nav">
+    <div class="container-15"></div>
+  </div>
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-left-container-5 shadow-three w-nav">
+    <div class="navbar-wrapper-5">
+      <a href="#" class="navbar-brand-5 w-nav-brand">
+        <div><img src="images/main.svg" loading="lazy" width="143" alt=""></div>
+      </a>
+      <nav role="navigation" class="nav-menu-wrapper-5 w-nav-menu">
+        <ul role="list" class="nav-menu-two-5 w-list-unstyled">
+          <li>
+            <a href="index.html" aria-current="page" class="nav-link-5 w--current">Home</a>
+          </li>
+          <li></li>
+          <li>
+            <div data-hover="true" data-delay="200" class="nav-dropdown-5 w-dropdown">
+              <div class="nav-dropdown-toggle-5 w-dropdown-toggle">
+                <div class="nav-dropdown-icon-5 w-icon-dropdown-toggle"></div>
+                <div>Services</div>
+              </div>
+              <nav class="nav-dropdown-list-5 shadow-three mobile-shadow-hide w-dropdown-list">
+                <a href="main/permits.html" class="nav-dropdown-link-5 w-dropdown-link">Permits</a>
+                <a href="main/passes.html" class="nav-dropdown-link-5 w-dropdown-link">Passes</a>
+                <a href="main/visas.html" class="nav-dropdown-link-5 w-dropdown-link">Visas</a>
+                <a href="main/permanent-residence.html" class="w-dropdown-link">Permanent Residency</a>
+                <a href="main/citizenship.html" class="dropdown-link-7 w-dropdown-link">Citizenship</a>
+              </nav>
+            </div>
+            <a href="main/about-us.html" class="nav-link-5">About</a>
+            <a href="main/contact.html" class="nav-link-5">Contact</a>
+          </li>
+          <li></li>
+          <li class="list-item-3">
+            <div class="nav-divider-5"></div>
+          </li>
+          <li>
+            <a href="main/frequently-asked-questions.html" class="nav-link-accent-5"><strong>FAQs</strong></a>
+          </li>
+          <li class="mobile-margin-top-14"></li>
+          <!-- Documents Dropdown -->
+          <li class="nav-dropdown-5 w-dropdown">
+            <div class="nav-dropdown-toggle-5 w-dropdown-toggle">
+              <div class="nav-dropdown-icon-5 w-icon-dropdown-toggle"></div>
+              <div>📄 Documents</div>
+            </div>
+            <nav class="nav-dropdown-list-5 shadow-three mobile-shadow-hide w-dropdown-list">
+              <a href="documents/REVISED RATES Immigration .pdf" class="nav-dropdown-link-5 w-dropdown-link" onclick="openPDF('Docu.pdf')">Revised Rates</a>
+              <a href="documents/Form-25.pdf" class="nav-dropdown-link-5 w-dropdown-link" onclick="openPDF('docs/citizenship-guide.pdf')">Form 25</a>
+              <a href="documents/Form-27.pdf" class="nav-dropdown-link-5 w-dropdown-link" onclick="openPDF('docs/visa-requirements.pdf')">Form 27</a>
+            </nav>
+          </li>
+        </ul>
+      </nav>
+      <div class="menu-button-5 w-nav-button">
+        <div class="icon-3 w-icon-nav-menu"></div>
+      </div>
+    </div>
+    <div class="container-6"></div>
+  </div>
+</div>
+
+<!-- PDF Viewer Modal -->
+<div id="pdfModal" class="pdf-modal">
+  <div class="pdf-modal-content">
+    <span class="pdf-close" onclick="closePDF()">&times;</span>
+    <canvas id="pdfCanvas"></canvas> 
+  </div>
+</div>
+
+<!-- PDF.js Script -->
+<script>
+  let pdfDoc = null;
+  let scale = 1.5;
+  
+  function openPDF(pdfUrl) {
+    document.getElementById("pdfModal").style.display = "flex";
+    const canvas = document.getElementById("pdfCanvas");
+    const ctx = canvas.getContext("2d");
+    
+    pdfjsLib.getDocument(pdfUrl).promise.then((pdf) => {
+      pdfDoc = pdf;
+      pdfDoc.getPage(1).then((page) => {
+        const viewport = page.getViewport({ scale });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        page.render(renderContext);
+      });
+    });
+  }
+  
+  function closePDF() {
+    document.getElementById("pdfModal").style.display = "none";
+  }
+</script>
+
   <div class="waves-section-hero-5">
     <div class="waves---main-container-11 w-container">
       <div class="waves-title-wrap-hero-5">

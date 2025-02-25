@@ -83,6 +83,75 @@
       <div class="container-6"></div>
     </div>
   </div>
+  <style>
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background-color: #FFBF00; /* Amber */
+      color: #333;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 12px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+  
+    /* Show the modal */
+    .modal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Close button */
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+  
+ <!-- Multiple Price Change Modals -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h5 class="modal-subheading">Revised Rates</h5>
+    <p class="modal-message">Dependant Pass Fees have been updated. Please to stay informed.</p>
+  
+  </div>
+</div>
+
+  
+  
+  <script>
+    function showModal() {
+      const modal = document.getElementById("modal1");
+      modal.classList.add("show");
+  
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        closeModal();
+      }, 5000);
+    }
+  
+    function closeModal() {
+      document.getElementById("modal1").classList.remove("show");
+    }
+  
+    // Show the modal when the page loads
+    window.onload = showModal;
+  </script>
   <div class="w-layout-blockcontainer w-container">
     <div id="w-node-_10d727a8-6b08-023b-53ce-a7a997696b06-53eca803" class="w-layout-layout quick-stack wf-layout-layout">
       <div id="w-node-_6ca913ae-b67f-8159-4d87-d1a2b7c4a341-53eca803" class="w-layout-cell cell">
@@ -125,8 +194,7 @@
             </ul>
             <p><strong>4. Fees:</strong></p>
             <ul role="list">
-              <li>KES 5,000 per dependent (cash).</li>
-              <li>Security bond of<strong> KES 100,000</strong> to be made with a bank or insurance company (to be done after approval).</li>
+              <li><strong>KES 20,000</strong> per dependent (cash).</li>
             </ul>
             <p><strong>Requirements for Male Dependent:</strong></p>
             <p>‍</p>
@@ -152,8 +220,7 @@
             </ul>
             <p>4<strong>. Fees:</strong></p>
             <ul role="list">
-              <li><strong>KES 5,000</strong> per dependent (cash).</li>
-              <li>Security bond of<strong> KES 100,000 </strong>to be made with a bank or insurance company (to be done after approval).</li>
+              <li><strong>KES 20,000</strong> per dependent (cash).</li>
             </ul>
             <p> <em>Once payments are submitted, the final pass will be processed and endorsed in the applicant’s passport after a few days.</em></p>
             <p>‍</p>
