@@ -37,7 +37,71 @@
   gtag('js', new Date());
   gtag('config', 'G-NYM4EF71LP');
 </script>
-</head>
+</head> <style>
+  /* Modal Styles */
+  .modal {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background-color: #FFBF00; /* Amber */
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  /* Show the modal */
+  .modal.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Close button */
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+  }
+</style>
+
+<!-- Multiple Price Change Modals -->
+<div id="modal1" class="modal">
+  🚨 <span>Category B - Revised rates!</span>
+  <button class="modal-close" onclick="closeModal(1)">❌</button>
+</div>
+
+
+<script>
+  function showModal() {
+    const modal = document.getElementById("modal1");
+    modal.classList.add("show");
+
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      closeModal();
+    }, 5000);
+  }
+
+  function closeModal() {
+    document.getElementById("modal1").classList.remove("show");
+  }
+
+  // Show the modal when the page loads
+  window.onload = showModal;
+</script>
 <body class="body-24">
   <div class="navbar-no-shadow-9">
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-no-shadow-container w-nav">
@@ -129,6 +193,11 @@
           <li>Certified copy of the birth certificate</li>
           <li>Certified copies of the parents&#x27; birth certificates</li>
           <li>Copy of dependent pass</li>
+        </ul>
+        <p><strong>Fees:</strong></p>
+        <ul>
+          <li>Processing Fees(Non Refundable):<strong> Ksh 50,000</strong> </li>
+          <li>Issuance Fees(Payable Upon approval): <strong> Ksh 750,000</strong></li>
         </ul>
         <p><em>Note: All documents must be certified, and a soft copy of photographs is required during the application process.</em></p>
         <p>‍</p>
